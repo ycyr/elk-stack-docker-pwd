@@ -20,7 +20,6 @@ services:
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - node.attr.box_type=hot
       - ELASTIC_PASSWORD=MagicWord
     ulimits:
       memlock:
@@ -40,7 +39,6 @@ services:
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - "discovery.zen.ping.unicast.hosts=elasticsearch"
-      - node.attr.box_type=hot
     ulimits:
       memlock:
         soft: -1
@@ -59,7 +57,6 @@ services:
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - "discovery.zen.ping.unicast.hosts=elasticsearch"
-      - node.attr.box_type=warm
     ulimits:
       memlock:
         soft: -1
