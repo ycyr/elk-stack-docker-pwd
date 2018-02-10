@@ -1,0 +1,52 @@
+---
+# Remember, leave a key empty if there is no value.  None will be a string,
+# not a Python "NoneType"
+#
+# Also remember that all examples have 'disable_action' set to True.  If you
+# want to use this action as a template, be sure to set this to False after
+# copying it.
+actions:
+  1:
+    action: create-monthly-logstash
+    description: Create the index as named, with the specified extra settings.
+    options:
+      name:  logstash-2015.05
+      extra_settings:
+        settings:
+          number_of_shards: 1
+          number_of_replicas: 1
+      disable_action: True
+  2:
+    description: >-
+      Reindex all daily logstash indices from March 2017 into logstash-2017.03
+    action: reindex
+    options:
+      wait_interval: 9
+      max_wait: -1
+      request_body:
+        source:
+          index: REINDEX_SELECTION
+        dest:
+          index: logstash-2015.05
+    filters:
+    - filtertype: pattern
+      kind: prefix
+      value: logstash-2017.03.
+   3:
+    action: close
+    description: >-
+      Close indices older than 30 days (based on index name), for logstash-
+      prefixed indices.
+    options:
+      delete_aliases: False
+      disable_action: True
+    filters:
+    - filtertype: pattern
+      kind: prefix
+      value: logstash-2015
+    - filtertype: age
+      source: name
+      direction: older
+      timestring: '%Y.%m.%d'
+      unit: days
+      unit_count: 3
