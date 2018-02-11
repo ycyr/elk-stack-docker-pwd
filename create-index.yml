@@ -1,0 +1,43 @@
+---
+actions:
+  1:
+    action: create_index
+    description: Create the index 
+    options:
+      name:  logstash-2015.05.18
+      extra_settings:
+        mappings:
+          log:
+            properties:
+              geo:
+               properties:
+                  coordinates:
+                     type: geo_point
+  2:
+    action: create_index
+    description: Create the index 
+    options:
+      name:  logstash-2015.05.19
+      extra_settings:
+        mappings:
+          log:
+            properties:
+              geo:
+               properties:
+                  coordinates:
+                     type: geo_point
+ 
+  3:
+    action: create_index
+    description: Create the index 
+    options:
+      name:  logstash-2015.05.20
+      extra_settings:
+        mappings:
+          log:
+            properties:
+              geo:
+               properties:
+                  coordinates:
+                     type: geo_point
+ 
