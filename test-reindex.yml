@@ -4,6 +4,7 @@ actions:
     action: create_index
     description: Create the index 
     options:
+      continue_if_exception: true
       name:  logstash-2015.05
       extra_settings:
         settings:
@@ -50,16 +51,14 @@ actions:
       unit: days
       unit_count: 30
   4:
-    action: index_settings
+    action: replicas
     description: >-
       Set Increase replication to 1
     options:
-        index_settings:
-         index:
-          number_of_replicas: 1
-        ignore_unavailable: False
-        preserve_existing: False
+        count: 1
     filters:
       - filtertype: pattern
         kind: prefix
         value: '^logstash-2015.05$'
+
+
