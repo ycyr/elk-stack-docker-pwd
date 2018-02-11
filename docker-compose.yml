@@ -11,6 +11,15 @@ services:
       - esnet
     depends_on: 
       - elasticsearch
+  cerebro:
+    container_name: cerebro
+    networks:
+      - esnet
+    depends_on:
+      - elasticsearch
+    image: yannart/cerebro:latest
+    ports:
+      - "9000:9000"
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.2.1
     container_name: elasticsearch
